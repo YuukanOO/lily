@@ -10,7 +10,8 @@ Places = new Mongo.collection('places');
 
 // Registering your model
 Lily.thereIs(Places, {
-  'name': { required: true, type: String, length: { max: 50 }, my_validator: 'lily_is_good' },
+  'name': { required: true, type: String, length: { max: 50 } },
+  'example_field': { my_validator: 'lily_is_good' },
   'lat': { required: true, type: Number, default: 0 },
   'lon': { required: true, type: Number, default: 0 },
   'created_at': { type: Date, default: function() { return new Date(); } }
@@ -66,7 +67,7 @@ Lily.configure({
   onError: function(validator_name, validator_opts, field, model) {
     // validator_name: my_validator
     // validator_opts: 'lily_is_good'
-    // field: 'name'
+    // field: 'example_field'
     // model: Places._name => 'places'
     
     return 'Oh noes, looks like the field ' + field + ' has some errors!';
@@ -95,4 +96,4 @@ Lily.configure({
 
 ## TODO
 - [ ] Possibility to define nested validation objects
-- [ ] Readme / Guide
+- [x] Readme / Guide
