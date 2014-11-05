@@ -1,0 +1,13 @@
+<template name="lilyErrorsTemplate">
+  {{#if lilyErrors}}
+  <ul class="errors-panel">
+    {{#each lilyErrors}}
+      {{> lilyErrorsTemplateItem}}
+    {{/each}}
+  </ul>
+  {{/if}}
+</template>
+
+<template name="lilyErrorsTemplateItem">
+  <li>{{this}}</li>
+</template>
