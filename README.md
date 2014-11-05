@@ -8,6 +8,10 @@ Lily provides a simple way to define validation model for everything you want an
 // Your collection
 Places = new Mongo.collection('places');
 
+// If you want to use it on a form, client side, it's simple too
+var myForm = { _name: 'registration_form' };
+Lily.thereIs(myForm, /*...*/);
+
 // Registering your model
 Lily.thereIs(Places, {
   'name': { required: true, type: String, length: { max: 50 } },
@@ -43,6 +47,9 @@ Lily.getErrors();
 Lily.addError('The example field is not right', 'example_field');
 // the second argument is used to link the given message to a field so that field
 // will be marked as "in error", see Lily.hasErrors(<field_name>)
+
+// If you want to clear errors
+Lily.clearErrors();
 
 // Lily also comes with some global template helpers
 // {{lilyErrors}} Contains Lily.getErrors()
