@@ -45,6 +45,8 @@ Lily.getErrors();
 
 // And if you want to manually add them at any time, you can use
 Lily.addError('The example field is not right', 'example_field');
+// If you want to mark multiple fields has failed, just send an array
+Lily.addError('Some fields are not right', ['example_field', 'another_field']);
 // the second argument is used to link the given message to a field so that field
 // will be marked as "in error", see Lily.hasErrors(<field_name>)
 

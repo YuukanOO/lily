@@ -1,7 +1,7 @@
 Package.describe({
   name: 'yuukan:lily',
   summary: 'Tiny validation (client and server side) helper for meteor',
-  version: '1.0.5',
+  version: '1.0.6',
   git: 'https://github.com/YuukanOO/lily'
 });
 

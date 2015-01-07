@@ -49,6 +49,20 @@ Tinytest.add('test-defaultStack', function(test) {
   
 });
 
+Tinytest.add('test-addError', function(test) {
+  Lily.addError('some-error', 'username');
+  
+  var errors = Lily.getErrors();
+  test.equal(1, errors.length);
+  test.isTrue(Lily.hasErrors('username'));
+  test.isFalse(Lily.hasErrors('password'));
+  
+  Lily.clearErrors();
+  Lily.addError('some-error', ['username', 'password']);
+  test.isTrue(Lily.hasErrors('username'));
+  test.isTrue(Lily.hasErrors('password'));
+});
+
 Tinytest.add('test-fromObject', function(test) {
     
   var model = { _name: 'place' };
@@ -56,7 +70,8 @@ Tinytest.add('test-fromObject', function(test) {
   Lily.thereIs(model, {
     'address': { type: String, required: true, default: 'somewhere' },
     'lat': { required: false, type: Number },
-    'lon': { type: Number }
+    'lon': { type: Number },
+    'is_set': { type: Boolean, required: true, default: false }
   });
   
   var foo = { varB: 67, lat: 0, lon: -1 };
@@ -68,5 +83,6 @@ Tinytest.add('test-fromObject', function(test) {
   test.equal(0, res.lat);
   test.equal(-1, res.lon);
   test.equal('somewhere', res.address);
+  test.equal(false, res.is_set);
   
 });
