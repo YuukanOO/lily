@@ -1,4 +1,4 @@
-Tinytest.add('test-required', function (test) {
+Tinytest.add('validators - required', function (test) {
   
   var model = {};
   
@@ -14,7 +14,7 @@ Tinytest.add('test-required', function (test) {
   
 });
 
-Tinytest.add('test-type', function (test) {
+Tinytest.add('validators - type', function (test) {
   
   var model = {};
   
@@ -33,7 +33,7 @@ Tinytest.add('test-type', function (test) {
   
 });
 
-Tinytest.add('test-length', function (test) {
+Tinytest.add('validators - length', function (test) {
   
   var model = {};
   
@@ -52,7 +52,7 @@ Tinytest.add('test-length', function (test) {
   
 });
 
-Tinytest.add('test-match', function (test) {
+Tinytest.add('validators - match', function (test) {
   
   var model = {};
   

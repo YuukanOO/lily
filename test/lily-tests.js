@@ -1,4 +1,4 @@
-Tinytest.add('test-utils', function (test) {
+Tinytest.add('utils - test getDefault', function (test) {
   
   var obj = {
     default_static: 5,
@@ -18,11 +18,9 @@ Tinytest.add('test-utils', function (test) {
   
 });
 
-Tinytest.add('test-defaultStack', function(test) {
+Tinytest.add('core - Default stack check', function(test) {
   
   var model = { _name: 'user_registration' };
-  
-  Lily.configure({});
   
   Lily.thereIs(model, {
     'first_name': { type: String, required: true },
@@ -49,7 +47,7 @@ Tinytest.add('test-defaultStack', function(test) {
   
 });
 
-Tinytest.add('test-addError', function(test) {
+Tinytest.add('utils - Errors addition/removal', function(test) {
   Lily.addError('some-error', 'username');
   
   var errors = Lily.getErrors();
@@ -63,7 +61,7 @@ Tinytest.add('test-addError', function(test) {
   test.isTrue(Lily.hasErrors('password'));
 });
 
-Tinytest.add('test-fromObject', function(test) {
+Tinytest.add('core - fromObject', function(test) {
     
   var model = { _name: 'place' };
   

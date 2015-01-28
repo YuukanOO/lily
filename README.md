@@ -18,7 +18,11 @@ Lily.thereIs(Places, {
   'example_field': { my_validator: 'lily_is_good' },
   'lat': { required: true, type: Number, default: 0 },
   'lon': { required: true, type: Number, default: 0 },
-  'created_at': { type: Date, default: function() { return new Date(); } }
+  'created_at': { type: Date, default: function() { return new Date(); } },
+  'address': Lily.Object({
+    'country': { type: String, required: true },
+    'state' : { type: String }
+  }) // Nested object since v1.1.0!
 });
 
 // And now, your model has some nice new functions!
@@ -26,12 +30,24 @@ Lily.thereIs(Places, {
 // In a template event, you can use the fromTemplate function.
 // It will try to find input with [name=<field>], if multiple are found, it
 // assumes you wanted an Array of values
+//
+// Special notes for nested properties:
+// Lily will try to find field with [name=<field>_<nested_field>], in our example,
+// it will try to find a field with name=address_country & name=address_state
 var data = Places.fromTemplate(tpl);
 
 // In your server, you may want to remove unwanted properties before adding them
 // to mongo, example:
-var raw_data = { name: 'Paris', lat: 48.85, lon: 2.35, _other_value: 'unwanted' };
-var data = Places.fromObject(raw_data); // { name: 'Paris', lat: 48.85, lon: 2.35 }
+var raw_data = { 
+  name: 'Paris', 
+  lat: 48.85, 
+  lon: 2.35, 
+  _other_value: 'unwanted',
+  address: {
+    country: 'France'
+  }
+};
+var data = Places.fromObject(raw_data); // { name: 'Paris', lat: 48.85, lon: 2.35, address: { country: 'France' } }
 
 // In both case, you may want to check properties against the definition
 var pass = data.allRight(); // true
@@ -107,7 +123,3 @@ Lily.configure({
 });
 
 ```
-
-## TODO
-- [ ] Possibility to define nested validation objects
-- [x] Readme / Guide
