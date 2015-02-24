@@ -2,6 +2,10 @@
 
 Lily provides a simple way to define validation model for everything you want and lets you focus on your real business.
 
+## Installation
+
+`meteor add yuukan:lily`
+
 ## Overview
 
 ```javascript
@@ -23,6 +27,12 @@ Lily.thereIs(Places, {
     'country': { type: String, required: true },
     'state' : { type: String }
   }) // Nested object since v1.1.0!
+});
+
+// Since v1.2.0, you can call Lily.thereIs multiple time on the same object, it will add/replace validation fields
+// For example, this call adds a website field to the Places object
+Lily.thereIs(Places, {
+  'website': { type: String }
 });
 
 // And now, your model has some nice new functions!
@@ -59,6 +69,11 @@ data.errors(); // []
 // or
 Lily.getErrors();
 
+// Since v1.2.0, you can also get individual errors for field by using
+data.errors('name'); // undefined since no error for this field or an array of messages
+// or
+Lily.getErrors('name');
+
 // And if you want to manually add them at any time, you can use
 Lily.addError('The example field is not right', 'example_field');
 // If you want to mark multiple fields has failed, just send an array
@@ -71,6 +86,8 @@ Lily.clearErrors();
 
 // Lily also comes with some global template helpers
 // {{lilyErrors}} Contains Lily.getErrors()
+// or
+// {{lilyErrors 'name'}} Contains Lily.getErrors(field_name)
 // {{lilyErrorClass '<field>'}} Check wether field has errors and returns the error class defined
 
 // And a default template called {{> lilyErrorsTemplate}} if that's your thing

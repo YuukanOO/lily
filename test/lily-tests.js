@@ -30,7 +30,12 @@ Tinytest.add('core - Default stack check', function(test) {
     'password_confirm': { required: true, match: 'password' }
   });
   
-  test.isFalse(model.allRight({}));
+  var o = model.fromObject({});
+  
+  test.isFalse(o.allRight());
+  test.equal(1, o.errors('first_name').length);
+  test.equal(1, o.errors('last_name').length);
+  test.isTrue(_.isUndefined(o.errors('age')));
   test.isFalse(model.allRight({ first_name: 'john', last_name: 'doe' }));
   test.isFalse(model.allRight({ first_name: 'john', last_name: 'doe', age: '49' }));
   test.equal(3, Lily.getErrors().length);
@@ -59,6 +64,11 @@ Tinytest.add('utils - Errors addition/removal', function(test) {
   Lily.addError('some-error', ['username', 'password']);
   test.isTrue(Lily.hasErrors('username'));
   test.isTrue(Lily.hasErrors('password'));
+  
+  Lily.clearErrors();
+  Lily.addError('error1', 'username');
+  test.equal(1, Lily.getErrors('username').length);
+  test.equal('error1', Lily.getErrors('username')[0]);
 });
 
 Tinytest.add('core - fromObject', function(test) {

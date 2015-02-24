@@ -1,7 +1,7 @@
 Package.describe({
   name: 'yuukan:lily',
   summary: 'Tiny validation (client and server side) helper for meteor',
-  version: '1.1.0',
+  version: '1.2.0',
   git: 'https://github.com/YuukanOO/lily'
 });
 
@@ -21,7 +21,10 @@ Package.onUse(function(api) {
 Package.onTest(function(api) {
   api.use('tinytest');
   api.use('yuukan:lily');
-  api.addFiles('test/lily-tests.js');
-  api.addFiles('test/nested-tests.js');
-  api.addFiles('test/validators-tests.js');
+  api.addFiles([
+    'test/lily-tests.js',
+    'test/nested-tests.js',
+    'test/validators-tests.js',
+    'test/extend-tests.js'
+  ]);
 });
