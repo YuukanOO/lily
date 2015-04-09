@@ -1,21 +1,30 @@
 Package.describe({
   name: 'yuukan:lily',
   summary: 'Tiny validation (client and server side) helper for meteor',
-  version: '1.2.0',
+  version: '1.2.1',
   git: 'https://github.com/YuukanOO/lily'
 });
 
 Package.onUse(function(api) {
   api.versionsFrom('1.0');
-  api.use('underscore');
-  api.use('session');
-  api.use('templating');
-  api.addFiles('lib/middleware.js');
-  api.addFiles('lib/validators.js');
-  api.addFiles('lib/lily.js');
-  api.addFiles('lib/templates.html');
-  api.export('Lily');
-  api.export('LilyValidators');
+
+  api.use([
+    'underscore',
+    'session',
+    'templating'
+  ]);
+
+  api.addFiles([
+    'lib/middleware.js',
+    'lib/validators.js',
+    'lib/lily.js',
+    'lib/templates.html'
+  ]);
+
+  api.export([
+    'Lily',
+    'LilyValidators'
+  ]);
 });
 
 Package.onTest(function(api) {
